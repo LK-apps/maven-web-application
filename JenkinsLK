@@ -2,7 +2,7 @@ node{
     def mvnHome = tool name: "Maven3.8.3"
    // properties([[$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
   
-    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
+  //  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
   
     stage('checkoutcode'){
         git branch: 'development', credentialsId: '6b85e4d0-c045-4fd9-9583-9c65397e8031', url: 'https://github.com/LK-apps/maven-web-application.git'
