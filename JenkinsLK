@@ -1,4 +1,4 @@
-node('wallmart-node'){
+node{
     def mvnHome = tool name: "Maven3.8.3"
    // properties([[$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
   
