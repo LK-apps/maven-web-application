@@ -14,10 +14,8 @@ def mavenHome = tool name: "maven3.8.3"
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 
-
-
 stage('CheckOutCode'){
-git branch: 'development', credentialsId: '9aad10da-e742-413a-a2f6-ce6a8b007f70', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
+git credentialsId: 'd70ace23-962a-4614-8d36-0351dfdb31ce', url: 'https://github.com/LK-apps/maven-web-application.git'
 }
 
 stage('Build'){
@@ -31,13 +29,13 @@ sh "mvn  sonar:sonar"
 stage('UploadArtifactsIntoNexusRepo'){
 sh "mvn deploy"
 }
-
+*/
 stage('DeployAppintoTomcatServer'){
-sshagent(['dd147e39-1f55-4554-9700-b10dc494211f']) {
-  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.201.155:/opt/apache-tomcat-9.0.54/webapps/"
+ sshagent(['e12a3ed8-ec52-46f6-beb3-446f81bd6ba5']) {
+ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.186.179:/opt/apache-tomcat-9.0.62/webapps/"     
 }
 }
-
+/*
 stage('SendEmailNotification'){
 
 mail bcc: '', body: '''Build Over..
@@ -46,7 +44,6 @@ Regards,
 Mithun Software Solutions,
 9980923226''', cc: 'devopstrainingblr@gmail.com', from: '', replyTo: '', subject: 'Build over!...', to: 'devopstrainingblr@gmail.com'
 }
-
 */
 
 }
