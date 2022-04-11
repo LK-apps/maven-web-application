@@ -12,7 +12,7 @@ node{
   
 def mavenHome = tool name: "maven 3.8.3"
 
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
+//properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 
 stage('CheckOutCode'){
 git credentialsId: 'd70ace23-962a-4614-8d36-0351dfdb31ce', url: 'https://github.com/LK-apps/maven-web-application.git'
