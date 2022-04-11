@@ -1,5 +1,5 @@
 node{
-    def mvnHome = tool name: "Maven3.8.3"
+    def mvnHome = tool name: "maven 3.8.3"
    // properties([[$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
   
   //  properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
@@ -14,16 +14,16 @@ node{
     stage('ExecuteSonarQubeReport'){
         sh "${mvnHome}/bin/mvn sonar:sonar"
     }
-    stage('UploadArtfact_Nexus'){
+     stage('UploadArtfact_Nexus'){
         sh "${mvnHome}/bin/mvn deploy"
     }
     stage('DeployingAppinTomcat'){
         sshagent(['687f6c5b-eb91-4879-832a-4daf8c38cd79']) {
             sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.113.36:/opt/apache-tomcat-9.0.54/webapps"
-}
-}
-      stage('sendingemailnotification'){
-        emailext body: '''build-over
+            }
+    }
+    stage('sendingemailnotification'){
+       emailext body: '''build-over
 
 
 Regards,
