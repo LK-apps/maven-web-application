@@ -10,7 +10,7 @@ node{
   echo "JOB Name ${env.JOB_NAME}"
   */
   
-def mavenHome = tool name: "maven3.8.3"
+def mavenHome = tool name: "maven 3.8.3"
 
 properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
 
